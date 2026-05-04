@@ -1,0 +1,585 @@
+// BookingCard.module.scss
+.card {
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+
+  &.active {
+    border-color: #3b82f6;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.12);
+  }
+
+  &.updating {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+}
+
+.compact {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  cursor: pointer;
+
+  &:hover {
+    background: #f8fafc;
+  }
+}
+
+.statusDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 3px currentColor;
+  opacity: 0.9;
+}
+
+.mainInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+
+.timeRange {
+  font-weight: 600;
+  color: #111827;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.guestLine {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.name {
+  font-weight: 500;
+  color: #374151;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.separator {
+  color: #d1d5db;
+  font-weight: 300;
+}
+
+.guests {
+  color: #6b7280;
+  white-space: nowrap;
+}
+
+.badges {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.table {
+  background: #eff6ff;
+  color: #1d4ed8;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid #bfdbfe;
+}
+
+.delayBadge {
+  background: #fef3c7;
+  color: #92400e;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid #fde68a;
+}
+
+.currentStatus {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.timerTag {
+  background: #fed7aa;
+  color: #9a3412;
+  padding: 3px 7px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.phone {
+  color: #3b82f6;
+  text-decoration: none;
+  font-size: 1.1rem;
+  padding: 4px;
+  line-height: 1;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: #eff6ff;
+  }
+}
+
+.details {
+  border-top: 1px solid #e5e7eb;
+  padding: 14px;
+  position: relative;
+  background: #fafbfc;
+}
+
+.section {
+  margin-bottom: 14px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  h4 {
+    margin: 0 0 10px 0;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #374151;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+
+  h4 {
+    margin: 0;
+  }
+}
+
+.tableCounter {
+  font-size: 0.75rem;
+  color: #6b7280;
+  background: #f3f4f6;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.infoNote {
+  background: #eff6ff;
+  border: 1px solid #dbeafe;
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 0.85rem;
+  color: #1e40af;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.noteDetail {
+  color: #60a5fa;
+  font-weight: 500;
+}
+
+.warningNote {
+  background: #fef3c7;
+  border: 1px solid #fde68a;
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 0.85rem;
+  color: #92400e;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tableManagement,
+.tableSelection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.actionsRow {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.primaryButton {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 9px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex: 1;
+
+  &:hover:not(:disabled) {
+    background: #2563eb;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.secondaryButton {
+  background: white;
+  color: #374151;
+  border: 1px solid #d1d5db;
+  padding: 9px 14px;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover:not(:disabled) {
+    background: #f9fafb;
+    border-color: #9ca3af;
+  }
+}
+
+.backButton {
+  @extend .secondaryButton;
+  padding: 8px 12px;
+  font-size: 0.8rem;
+  align-self: flex-start;
+}
+
+.iconButton {
+  background: white;
+  border: 1px solid #d1d5db;
+  padding: 9px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  line-height: 1;
+
+  &:hover:not(:disabled) {
+    background: #f9fafb;
+    border-color: #9ca3af;
+  }
+}
+
+.dangerButton {
+  @extend .primaryButton;
+  background: #ef4444;
+
+  &:hover:not(:disabled) {
+    background: #dc2626;
+    box-shadow: 0 2px 4px rgba(239, 68, 68, 0.2);
+  }
+}
+
+.tablesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+  gap: 6px;
+}
+
+.tableButton {
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 10px 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  min-height: 60px;
+  justify-content: center;
+
+  &:hover:not(:disabled):not(.occupied) {
+    border-color: #3b82f6;
+    box-shadow: 0 2px 6px rgba(59, 130, 246, 0.15);
+    transform: translateY(-1px);
+  }
+
+  &.current {
+    border-color: #10b981;
+    background: #f0fdf4;
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.1);
+  }
+
+  &.occupied {
+    opacity: 0.5;
+    background: #f9fafb;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.tableNumber {
+  font-weight: 700;
+  color: #111827;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.tableInfo {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.7rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.restrictionIcon {
+  font-size: 0.8rem;
+}
+
+.noTables {
+  text-align: center;
+  padding: 16px;
+  background: #fef2f2;
+  border-radius: 6px;
+  border: 1px dashed #fca5a5;
+
+  p {
+    color: #dc2626;
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+  }
+}
+
+.statusGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 6px;
+}
+
+.statusButton {
+  padding: 9px 12px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.wishes {
+  background: #f8fafc;
+  border-left: 3px solid #3b82f6;
+  border-radius: 4px;
+  padding: 10px 12px;
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #374151;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.wishesIcon {
+  font-size: 1rem;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+.loadingOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  backdrop-filter: blur(2px);
+  z-index: 10;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #e5e7eb;
+  border-top: 2px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Контактная информация
+.contactInfo {
+  padding: 0;
+}
+
+.contactLine {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #e5e7eb;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.contactLabel {
+  font-weight: 600;
+  color: #374151;
+  font-size: 14px;
+  min-width: 70px;
+}
+
+.phoneGroup {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.phoneNumber {
+  font-size: 15px;
+  font-weight: 500;
+  color: #3b82f6;
+  text-decoration: none;
+  font-family: "Courier New", monospace;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+
+  &:hover {
+    background: #eff6ff;
+    text-decoration: underline;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+.copyButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid #d1d5db;
+  background: #f9fafb;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+
+  &:hover {
+    background: #f3f4f6;
+    border-color: #9ca3af;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+// Адаптивность
+@media (max-width: 768px) {
+  .compact {
+    gap: 8px;
+    padding: 10px 12px;
+    flex-wrap: wrap;
+  }
+
+  .mainInfo {
+    flex: 1 1 100%;
+    order: 1;
+  }
+
+  .badges {
+    order: 2;
+  }
+
+  .currentStatus {
+    order: 3;
+  }
+
+  .phone {
+    order: 4;
+    margin-left: auto;
+  }
+
+  .tablesGrid {
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+  }
+
+  .statusGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .details {
+    padding: 12px;
+  }
+
+  .section {
+    margin-bottom: 12px;
+  }
+}
+
+// Анимации
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.details {
+  animation: slideDown 0.2s ease-out;
+}

@@ -1,0 +1,193 @@
+// app/page.module.scss
+// Полностью адаптивные стили на vanilla SCSS (CSS Modules — изоляция через локальные классы)
+// Все глобальные элементы вынесены в класс .homepage (или аналогичный корневой)
+// Переменные теперь внутри .homepage {} — это решает ошибку "not pure selector"
+// Для настоящих глобальных переменных создайте отдельный глобальный SCSS файл (например, globals.scss) и импортируйте в layout.js
+// Поддержка mobile-first, BEM-подобный нейминг, nesting, mixin'ы
+
+// Анимация спиннера (глобальная, но внутри модуля — будет хэширована, если нужно глобально — вынесите в @keyframes вне класса)
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Mixin для контейнера
+@mixin container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  @media (min-width: 640px) {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    max-width: 1280px; // --container-max-width убран, хардкод для простоты
+  }
+}
+
+// Mixin для flex-центрирования
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.homepage {
+  // Переменные теперь локальные для этого модуля (доступны через nesting)
+  --color-primary: #2563eb;
+  --color-primary-hover: #1d4ed8;
+  --color-bg: #f9fafb;
+  --color-bg-error: #fef2f2;
+  --color-text: #1f2937;
+  --color-text-light: #6b7280;
+  --color-text-muted: #9ca3af;
+  --color-error: #dc2626;
+  --color-white: #ffffff;
+  --border-radius: 0.5rem;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --transition: all 0.2s ease-in-out;
+  --spinner-size: 4rem;
+
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bg);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  color: var(--color-text);
+
+  &__main {
+    flex: 1;
+    @include container;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+
+    @media (min-width: 768px) {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+  }
+}
+
+.loading {
+  @include flex-center;
+  min-height: 100vh;
+  background-color: var(
+    --color-bg
+  ); // Будет работать, если loading внутри homepage или переменные дублированы
+
+  // Дублируем переменные здесь, чтобы loading был независимым (CSS Modules изолирует)
+  --color-primary: #2563eb;
+  --color-text: #1f2937;
+  --color-text-muted: #9ca3af;
+  --spinner-size: 4rem;
+
+  &__inner {
+    text-align: center;
+  }
+
+  &__spinner {
+    width: var(--spinner-size);
+    height: var(--spinner-size);
+    border: 0.5rem solid rgba(37, 99, 235, 0.2);
+    border-top-color: var(--color-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1.5rem;
+  }
+
+  &__text {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: var(--color-text);
+
+    @media (min-width: 640px) {
+      font-size: 1.25rem;
+    }
+  }
+
+  &__subtext {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-top: 0.5rem;
+  }
+}
+
+.error {
+  @include flex-center;
+  min-height: 100vh;
+
+  // Дублируем переменные
+  --color-bg-error: #fef2f2;
+  --color-white: #ffffff;
+  --color-error: #dc2626;
+  --color-text-light: #6b7280;
+  --color-primary: #2563eb;
+  --color-primary-hover: #1d4ed8;
+  --border-radius: 0.5rem;
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --transition: all 0.2s ease-in-out;
+
+  background-color: var(--color-bg-error);
+
+  &__inner {
+    max-width: 28rem;
+    padding: 2rem;
+    background-color: var(--color-white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+  }
+
+  &__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-error);
+    margin-bottom: 1rem;
+
+    @media (min-width: 640px) {
+      font-size: 1.875rem;
+    }
+  }
+
+  &__message {
+    font-size: 1rem;
+    color: var(--color-text-light);
+    margin-bottom: 1.5rem;
+  }
+
+  &__button {
+    padding: 0.75rem 1.5rem;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    font-weight: 500;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+
+    &:hover {
+      background-color: var(--color-primary-hover);
+    }
+
+    &:focus {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 2px;
+    }
+  }
+}

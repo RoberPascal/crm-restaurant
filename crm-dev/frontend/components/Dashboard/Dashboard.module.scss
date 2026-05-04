@@ -1,0 +1,633 @@
+// ============================================
+// components/Dashboard/Dashboard.module.scss
+// ============================================
+
+// Цветовая палитра
+$seasalt: #f8f9fa;
+$antiflash-white: #e9ecef;
+$platinum: #dee2e6;
+$french-gray: #ced4da;
+$french-gray-2: #adb5bd;
+$slate-gray: #6c757d;
+$outer-space: #495057;
+$eerie-black: #212529;
+
+// Дополнительные цвета
+$primary: #3b82f6;
+$primary-light: #dbeafe;
+$success: #10b981;
+$success-light: #d1fae5;
+$warning: #f59e0b;
+$warning-light: #fef3c7;
+$danger: #ef4444;
+$danger-light: #fee2e2;
+$white: #ffffff;
+
+// ============================================
+// Основной контейнер
+// ============================================
+.dashboard {
+  max-width: 768px;
+  background-color: $seasalt;
+  color: $eerie-black;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 80px 12px 80px 12px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+// ============================================
+// Баннер ошибки
+// ============================================
+.errorBanner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: #fff0f0;
+  border: 1px solid #ffcdd2;
+  border-radius: 8px;
+  color: #c62828;
+  font-size: 14px;
+  margin-bottom: 8px;
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  width: calc(100% - 32px);
+  max-width: 600px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+  button {
+    background: none;
+    border: none;
+    color: #c62828;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0 4px;
+    line-height: 1;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}
+
+// ============================================
+// Шапка + статистика
+// ============================================
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-radius: 8px;
+}
+
+.headerMain {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.controls {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.statsBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  flex-wrap: wrap;
+  background: transparent;
+}
+
+// Контейнер для статистики
+.quickStats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  width: 100%;
+
+  @media (min-width: 768px) {
+    gap: 16px;
+  }
+}
+
+// Карточка статистики
+.statChip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 70px;
+  padding: 8px 12px;
+  border-radius: 16px;
+  background: $seasalt;
+  border: 1px solid $platinum;
+  transition: background 0.2s ease;
+
+  span {
+    font-size: 10px;
+    color: $slate-gray;
+    margin-bottom: 2px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+
+  strong {
+    font-size: 16px;
+    font-weight: 700;
+    color: $eerie-black;
+    line-height: 1;
+  }
+}
+
+// Группа статусов (если используется)
+.statusStats {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  background: $white;
+  border-radius: 10px;
+  border: 1px solid $platinum;
+
+  @media (max-width: 768px) {
+    gap: 12px;
+    padding: 10px 12px;
+  }
+}
+
+.statusItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.statusDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 2px rgba($white, 0.8);
+
+  @media (max-width: 768px) {
+    width: 8px;
+    height: 8px;
+  }
+}
+
+.statusCount {
+  font-size: 14px;
+  font-weight: 700;
+  color: $eerie-black;
+  min-width: 20px;
+  text-align: center;
+
+  @media (max-width: 768px) {
+    font-size: 13px;
+    min-width: 16px;
+  }
+}
+
+// Проблемные метрики (если используется)
+.problemStats {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: $danger-light;
+  border-radius: 10px;
+  border: 1px solid rgba($danger, 0.3);
+
+  @media (max-width: 768px) {
+    gap: 8px;
+    padding: 8px 10px;
+  }
+}
+
+.problemItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.warningIcon,
+.dangerIcon {
+  font-size: 14px;
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
+}
+
+.problemCount {
+  font-size: 14px;
+  font-weight: 700;
+
+  @media (max-width: 768px) {
+    font-size: 13px;
+  }
+
+  .warningIcon + & {
+    color: $warning;
+  }
+
+  .dangerIcon + & {
+    color: $danger;
+  }
+}
+
+// Индикатор подключения (если используется)
+.connectionIndicator {
+  padding: 10px 14px;
+  background: $white;
+  border-radius: 10px;
+  border: 1px solid $platinum;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: 768px) {
+    padding: 8px 10px;
+  }
+}
+
+.connectionDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+
+  @media (max-width: 768px) {
+    width: 10px;
+    height: 10px;
+  }
+
+  &.connected {
+    background: $success;
+    box-shadow: 0 0 0 3px rgba($success, 0.2);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  &.disconnected {
+    background: $danger;
+    box-shadow: 0 0 0 3px rgba($danger, 0.2);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+// ============================================
+// Фильтры: поиск + CustomSelect
+// ============================================
+.filtersRow {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+.searchInput {
+  flex: 1;
+  min-width: 180px;
+  padding: 10px 12px;
+  border: 1px solid $platinum;
+  border-radius: 16px;
+  font-size: 14px;
+  background: $white;
+  transition: border-color 0.2s ease;
+  color: $eerie-black;
+
+  &:focus {
+    outline: none;
+    border-color: $primary;
+  }
+
+  &::placeholder {
+    color: $french-gray-2;
+  }
+}
+
+// ============================================
+// КАСТОМНЫЙ SELECT
+// ============================================
+.customSelect {
+  position: relative;
+  min-width: 180px;
+  font-family: "Montserrat", sans-serif;
+
+  @media (max-width: 768px) {
+    min-width: 100%;
+  }
+}
+
+.selectTrigger {
+  width: 100%;
+  padding: 10px 12px;
+  background: $white;
+  border: 1px solid $platinum;
+  border-radius: 16px;
+  font-size: 14px;
+  color: $eerie-black;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: border-color 0.2s ease;
+
+  &:hover {
+    border-color: $french-gray;
+  }
+
+  &.open,
+  &:focus {
+    outline: none;
+    border-color: $primary;
+  }
+}
+
+.selectedLabel {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.arrow {
+  width: 18px;
+  height: 18px;
+  color: $slate-gray;
+  flex-shrink: 0;
+  margin-left: 12px;
+  transition: transform 0.2s ease;
+
+  .open & {
+    transform: rotate(180deg);
+  }
+}
+
+.optionsList {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: $white;
+  border: 2px solid $platinum;
+  border-radius: 16px;
+  overflow: hidden;
+  z-index: 100;
+  box-shadow:
+    0 12px 32px rgba($eerie-black, 0.12),
+    0 4px 12px rgba($eerie-black, 0.08);
+  max-height: 280px;
+  overflow-y: auto;
+  animation: slideDown 0.2s ease;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $seasalt;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $french-gray;
+    border-radius: 4px;
+
+    &:hover {
+      background: $slate-gray;
+    }
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.optionItem {
+  padding: 14px 16px;
+  font-size: 15px;
+  color: $eerie-black;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-weight: 500;
+
+  &:hover {
+    background: $primary-light;
+    color: $primary;
+  }
+
+  &.selected {
+    background: $primary;
+    color: $white;
+    font-weight: 600;
+  }
+}
+
+// ============================================
+// Группировка по времени
+// ============================================
+.main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+}
+
+.loadingOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba($white, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  z-index: 50;
+  backdrop-filter: blur(2px);
+}
+
+.loadingSpinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+
+  p {
+    font-size: 15px;
+    color: $slate-gray;
+    font-weight: 500;
+    margin: 0;
+  }
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid $platinum;
+  border-top-color: $primary;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.addBookingBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: $success;
+  border: none;
+  color: $white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba($success, 0.3);
+  cursor: pointer;
+  z-index: 1000;
+  transition: all 0.2s ease;
+  font-size: 24px;
+
+  &:hover {
+    background: darken($success, 8%);
+    box-shadow: 0 4px 12px rgba($success, 0.4);
+  }
+}
+
+.timeSlots {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.timeSlot {
+  background: transparent;
+  border-radius: 6px;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.slotHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid $platinum;
+
+  h3 {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: $slate-gray;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .slotCount {
+    font-size: 12px;
+    color: $slate-gray;
+    font-weight: 500;
+  }
+}
+
+.slotBookings {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+// ============================================
+// Пустое состояние
+// ============================================
+.emptyState {
+  text-align: center;
+  padding: 80px 24px;
+  max-width: 420px;
+  margin: 0 auto;
+
+  h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: $eerie-black;
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+  }
+
+  p {
+    font-size: 15px;
+    color: $slate-gray;
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+
+  .liveIndicator {
+    color: $success;
+    font-size: 14px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    &::before {
+      content: "";
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: $success;
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+  }
+}
+
+.empty,
+.loading {
+  text-align: center;
+  padding: 80px 24px;
+  font-size: 16px;
+  color: $slate-gray;
+  background: $white;
+  border: 2px dashed $platinum;
+  border-radius: 16px;
+  line-height: 1.6;
+}

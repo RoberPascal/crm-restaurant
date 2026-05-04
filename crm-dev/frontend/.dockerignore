@@ -1,0 +1,33 @@
+# Системные файлы
+.DS_Store
+Thumbs.db
+
+# Node modules (мы устанавливаем их внутри контейнера)
+node_modules
+npm-debug.log
+yarn-error.log
+yarn-debug.log
+
+# Локальные окружения
+.env
+.env.local
+.env.*.local
+
+# Логи
+logs
+*.log
+
+# IDE / редакторы
+.vscode
+.idea
+*.sublime*
+
+# Сборки и временные файлы
+dist
+build
+.tmp
+.cache
+
+# Docker
+Dockerfile
+docker-compose.yml

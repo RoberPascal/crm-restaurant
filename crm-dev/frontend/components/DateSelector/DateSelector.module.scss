@@ -1,0 +1,282 @@
+// ============================================
+// components/DateSelector/DateSelector.module.scss
+// ============================================
+
+// Цветовая палитра
+$seasalt: #f8f9faff;
+$antiflash-white: #e9ecefff;
+$platinum: #dee2e6ff;
+$french-gray: #ced4daff;
+$french-gray-2: #adb5bdff;
+$slate-gray: #6c757dff;
+$outer-space: #495057ff;
+$onyx: #343a40ff;
+$eerie-black: #212529ff;
+
+.dateSelector {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 396px;
+  width: 100%;
+  gap: 4px;
+  box-sizing: border-box;
+}
+
+.nav {
+  background: rgba($french-gray, 0.3);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba($platinum, 0.4);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: $outer-space;
+  flex-shrink: 0;
+
+  &:active {
+    transform: rotate(90deg) scale(0.95);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.date {
+  padding: 12px 20px;
+  background: rgba($seasalt, 0.9);
+  border: 1px solid rgba($platinum, 0.8);
+  border-radius: 16px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: $eerie-black;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 140px;
+  text-align: center;
+  max-width: 396px;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: rgba($antiflash-white, 0.9);
+    border-color: rgba($french-gray, 0.8);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+}
+
+.loadingSpinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  span {
+    font-size: 14px;
+    color: $slate-gray;
+  }
+
+  &::before {
+    content: "";
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba($slate-gray, 0.3);
+    border-top-color: $eerie-black;
+    border-radius: 50%;
+    animation: spinSmall 0.6s linear infinite;
+  }
+}
+
+@keyframes spinSmall {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// todayButton удалён
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba($eerie-black, 0.4);
+  backdrop-filter: blur(8px);
+  z-index: 9998;
+}
+
+.modal {
+  position: fixed;
+  top: 350px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba($seasalt, 0.95);
+  backdrop-filter: blur(40px) saturate(2);
+  border: 1px solid rgba($platinum, 0.8);
+  border-radius: 24px;
+  padding: 20px;
+  width: 100%;
+  max-width: 396px;
+  height: auto;
+  overflow: hidden;
+  z-index: 9999;
+  box-shadow: 0 32px 80px rgba($eerie-black, 0.25),
+    0 12px 32px rgba($eerie-black, 0.15), 0 4px 12px rgba($eerie-black, 0.1);
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.monthLabel {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #212529;
+}
+
+.navButton {
+  background: rgba($french-gray, 0.3);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba($platinum, 0.4);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: $outer-space;
+  flex-shrink: 0;
+
+  &:active {
+    transform: rotate(90deg) scale(0.95);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.closeButton {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba($french-gray, 0.3);
+  border: 1px solid rgba($platinum, 0.4);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 16px;
+  color: $outer-space;
+
+  &:hover {
+    background: rgba($french-gray, 0.5);
+    transform: scale(1.1);
+  }
+}
+
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.weekdays span {
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: $slate-gray;
+  padding: 8px 0;
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.day {
+  padding: 10px;
+  background: #ffffff;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #212529;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+
+  &.today {
+    border-color: $eerie-black;
+    font-weight: 600;
+  }
+
+  &.selected {
+    background: #212529;
+    color: #ffffff;
+    font-weight: 600;
+    border-color: transparent;
+  }
+
+  &.disabled {
+    color: #ced4da;
+    cursor: not-allowed;
+    background: #f8f9fa;
+  }
+
+  &:not(.disabled):hover {
+    background: rgba($antiflash-white, 0.9);
+    transform: scale(1.05);
+  }
+}
+
+.empty {
+  height: 36px;
+}

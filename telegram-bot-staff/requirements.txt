@@ -1,0 +1,9 @@
+python-telegram-bot[webhooks]==20.7
+redis==5.2.1
+sqlalchemy==2.0.36
+asyncpg==0.30.0
+pydantic==2.10.4
+pydantic-settings==2.7.1
+structlog==24.4.0
+python-dateutil==2.9.0.post0
+pytz==2024.2
