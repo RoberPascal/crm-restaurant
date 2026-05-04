@@ -1,0 +1,32 @@
+.schedule {
+  max-width: 430px;
+  margin: 16px auto;
+}
+
+.schedule p {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  color: #0a0908;
+}
+
+.schedule ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 8px;
+}
+
+.schedule li {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  color: #0a0908;
+  margin-bottom: 4px;
+}
+
+.toggleButton {
+  background: none;
+  border: none;
+  color: #c6ac8e;
+  cursor: pointer;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+}

@@ -1,0 +1,155 @@
+.section {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 24px;
+  margin: 16px 0;
+  border: 1px solid #f1f3f5;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.header {
+  margin-bottom: 20px;
+
+  h2 {
+    font-family: "Oswald", sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: #212529;
+    text-transform: uppercase;
+    margin: 0;
+    letter-spacing: -0.5px;
+  }
+}
+
+.bookingWidget {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.daySelector {
+  display: flex;
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 4px;
+}
+
+.dayButton {
+  flex: 1;
+  padding: 10px 16px;
+  border: none;
+  background: none;
+  border-radius: 10px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #6c757d;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &.active {
+    background: #ffffff;
+    color: #212529;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+}
+
+.slotsContainer {
+  overflow: hidden;
+}
+
+.timeSlots {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 8px; // Space for scrollbar
+  scrollbar-width: none; // Firefox
+  -ms-overflow-style: none; // IE/Edge
+
+  &::-webkit-scrollbar {
+    display: none; // Chrome/Safari
+  }
+}
+
+.timeSlot {
+  padding: 12px 20px;
+  background: #ffffff;
+  border: 2px solid #4dabf7;
+  border-radius: 12px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #4dabf7;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+
+  &:hover {
+    background: #4dabf7;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(77, 171, 247, 0.4);
+  }
+}
+
+.hint {
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  color: #6c757d;
+  text-align: center;
+  margin: 0;
+}
+
+.noSlots {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  color: #adb5bd;
+  text-align: center;
+  padding: 20px;
+  width: 100%;
+}
+
+.loadingSlots {
+  display: flex;
+  gap: 8px;
+  padding: 8px 0;
+}
+
+.skeletonSlot {
+  width: 80px;
+  height: 44px;
+  background: #e9ecef;
+  border-radius: 12px;
+  flex-shrink: 0;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+// Адаптивность
+@media (max-width: 480px) {
+  .section {
+    padding: 20px;
+    margin: 12px 0;
+  }
+
+  .header h2 {
+    font-size: 22px;
+  }
+
+  .timeSlot {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+}

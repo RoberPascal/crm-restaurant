@@ -1,0 +1,167 @@
+// components/DeleteAccountModal/DeleteAccountModal.module.scss
+
+// Цветовая палитра
+$seasalt: #f8f9faff;
+$antiflash-white: #e9ecefff;
+$platinum: #dee2e6ff;
+$french-gray: #ced4daff;
+$french-gray-2: #adb5bdff;
+$slate-gray: #6c757dff;
+$outer-space: #495057ff;
+$onyx: #343a40ff;
+$eerie-black: #212529ff;
+$error: #dc2626;
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba($eerie-black, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1001;
+  background: rgba($seasalt, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba($platinum, 0.6);
+  border-radius: 24px;
+  padding: 24px;
+  max-width: 380px;
+  width: calc(100vw - 40px);
+  box-shadow: 0 20px 60px rgba($eerie-black, 0.2),
+    0 8px 32px rgba($eerie-black, 0.1);
+}
+
+.title {
+  font-family: "Oswald", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: $eerie-black;
+  margin: 0 0 16px 0;
+  text-align: center;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+.description {
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  color: $outer-space;
+  text-align: center;
+  margin: 0 0 24px 0;
+}
+
+.buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.button {
+  padding: 14px 24px;
+  border: none;
+  border-radius: 18px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+  max-width: 140px;
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+.cancelButton {
+  background: rgba($antiflash-white, 0.8);
+  color: $outer-space;
+  border: 1px solid rgba($platinum, 0.6);
+
+  &:active {
+    background: rgba($platinum, 0.6);
+  }
+}
+
+.confirmButton {
+  background: rgba($error, 0.9);
+  color: $seasalt;
+
+  &:active {
+    background: darken($error, 10%);
+  }
+}
+
+// Адаптивность
+@media (max-width: 480px) {
+  .modal {
+    padding: 20px;
+    width: calc(100vw - 32px);
+  }
+
+  .title {
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+
+  .description {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  .button {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+}
+
+// Темная тема
+@media (prefers-color-scheme: dark) {
+  .overlay {
+    background: rgba($eerie-black, 0.8);
+  }
+
+  .modal {
+    background: rgba($onyx, 0.95);
+    border-color: rgba($outer-space, 0.6);
+  }
+
+  .title {
+    color: $seasalt;
+  }
+
+  .description {
+    color: $platinum;
+  }
+
+  .cancelButton {
+    background: rgba($outer-space, 0.6);
+    color: $platinum;
+    border-color: rgba($slate-gray, 0.4);
+
+    &:active {
+      background: rgba($outer-space, 0.8);
+    }
+  }
+
+  .confirmButton {
+    background: rgba($error, 0.8);
+
+    &:active {
+      background: rgba($error, 0.9);
+    }
+  }
+}

@@ -1,0 +1,241 @@
+// ============================================
+// ЛОКАЛЬНЫЕ СТИЛИ
+// ============================================
+// Fallback для vars (если globals.css не загружен)
+$seasalt: #f8f9faff;
+$antiflash-white: #e9ecefff;
+$platinum: #dee2e6ff;
+$french-gray: #ced4daff;
+$french-gray-2: #adb5bdff;
+$slate-gray: #6c757dff;
+$outer-space: #495057ff;
+$onyx: #343a40ff;
+$eerie-black: #212529ff;
+
+.mainContainer {
+  // Контейнер страницы: мобильный-first (max-width 430px)
+  max-width: 430px;
+  padding-bottom: 80px;
+  background-color: var(--seasalt, $seasalt);
+  color: var(--eerie-black, $eerie-black);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0 auto;
+
+  .content {
+    // Основной контент: стек секций с gap
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px 0;
+  }
+}
+
+.made {
+  font-family: "Montserrat", sans-serif;
+  font-size: 11px;
+  color: var(--slate-gray, $slate-gray);
+  margin: 8px 16px;
+  line-height: 1.5;
+  text-align: center;
+
+  a {
+    color: var(--slate-gray, $slate-gray);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: var(--outer-space, $outer-space);
+      text-decoration: underline;
+    }
+  }
+}
+
+// ============================================
+// ОБНОВЛЕННАЯ СЕКЦИЯ С КНОПКОЙ МАРШРУТА СПРАВА
+// ============================================
+.actionsWrapper {
+  // Sticky внизу: полная ширина, тень
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-width: 430px;
+  margin: 0 auto;
+  background-color: rgba(248, 249, 250, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(248, 249, 250, 0.1);
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  z-index: 10;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.12);
+  padding: 16px;
+}
+
+.actionsContainer {
+  display: flex;
+  gap: 12px;
+  align-items: stretch;
+  width: 100%;
+}
+
+.bookButton {
+  // Основная кнопка бронирования: system green
+  flex: 1;
+  background-color: #28a745; // System green
+  color: $seasalt;
+  padding: 16px 24px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  font-family: "Montserrat", sans-serif;
+  box-shadow: 0 4px 16px rgba(40, 167, 69, 0.3);
+  transition: all 0.3s ease;
+  letter-spacing: -0.01em;
+
+  &:hover {
+    box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+  }
+
+  &:active {
+    box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+  }
+}
+
+.routeButton {
+  // Компактная кнопка маршрута: квадратная с иконкой
+  flex: 0 0 auto;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffd449;
+  color: $outer-space;
+  border: 1.5px solid rgba($platinum, 0.6);
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  svg {
+    width: 42px;
+    height: 42px;
+  }
+
+  &:hover {
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+  }
+
+  &:active {
+    box-shadow: 0 2px 6px rgba(212, 175, 55, 0.3);
+  }
+}
+
+// ============================================
+// ОШИБКИ И LOADING
+// ============================================
+.error {
+  // Inline ошибка: centered, тень
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #dc3545; // System red
+  text-align: center;
+  padding: 16px;
+  background-color: var(--seasalt, $seasalt);
+  border-radius: 12px;
+  margin: 16px;
+  box-shadow: 0 2px 8px rgba(220, 53, 69, 0.1);
+  border-left: 4px solid #dc3545;
+}
+
+.errorPage {
+  // Full-screen ошибка
+  text-align: center;
+  padding: 40px 20px;
+
+  h2 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: #dc3545; // System red
+    margin: 0 0 16px 0;
+  }
+
+  p {
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px;
+    color: var(--slate-gray, $slate-gray);
+    margin: 0 0 24px 0;
+    line-height: 1.5;
+  }
+}
+
+.backButton {
+  // Кнопка "Назад"
+  background: #28a745; // System green
+  color: var(--seasalt, $seasalt);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:active {
+    background: #218838; // Darker on tap
+    transform: translateY(1px);
+  }
+
+  &:focus {
+    outline: 2px solid #28a745;
+    outline-offset: 2px;
+  }
+}
+
+.loading {
+  // Centered loading
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  color: var(--outer-space, $outer-space);
+}
+
+.pageWrapper {
+  position: relative;
+}
+
+.contentWrapper {
+  transition: filter 0.3s ease;
+}
+
+.spinner {
+  // Анимация спиннера
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--french-gray, $french-gray);
+  border-top: 3px solid #28a745; // System green
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

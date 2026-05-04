@@ -1,0 +1,84 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Глобальные стили: CSS variables для тем (импортируй в layout.js) */
+:root {
+  --bg-primary: #e9ecef;
+  --text-primary: #111827;
+  --accent: #3bb300;
+  --accent-hover: #329900;
+  --accent-active: #2a8000;
+  --error: #ef4444;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Base resets (если нужно) */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  background-color: #f8f9faff;
+}
+
+/* globals.css - Swiper styles for MenuModal */
+
+/* Улучшенные стили для Swiper */
+.swiper {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.swiper-wrapper {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.swiper-zoom-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.swiper-zoom-container > * {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* АГРЕССИВНОЕ СКРЫТИЕ КНОПОК TELEGRAM */
+.tgweb-container,
+.tgweb-mainbutton,
+.tgweb-settingsbutton,
+.tgweb-backbutton,
+.tgweb-footer,
+.tgweb-header,
+[class*="tg"],
+[class*="telegram"] {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Скрываем если Telegram добавляет какие-то обертки */
+body > [style*="telegram"],
+body > [class*="tg"] {
+  display: none !important;
+}

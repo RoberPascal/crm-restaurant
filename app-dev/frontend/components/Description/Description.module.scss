@@ -1,0 +1,304 @@
+// ============================================
+// components/Description/Description.module.scss
+// ============================================
+
+// Цветовая палитра
+$seasalt: #f8f9faff;
+$antiflash-white: #e9ecefff;
+$platinum: #dee2e6ff;
+$french-gray: #ced4daff;
+$french-gray-2: #adb5bdff;
+$slate-gray: #6c757dff;
+$outer-space: #495057ff;
+$onyx: #343a40ff;
+$eerie-black: #212529ff;
+
+.section {
+  background: rgba($seasalt, 0.8);
+  padding: 16px;
+  width: 100%;
+  max-width: 430px;
+  box-sizing: border-box;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border: 1px solid rgba($platinum, 0.6);
+  box-shadow: 0 8px 32px rgba($eerie-black, 0.08),
+    0 2px 8px rgba($eerie-black, 0.04), inset 0 1px 0 rgba($seasalt, 0.9);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba($platinum, 0.5);
+  .title {
+    font-family: "Oswald", sans-serif;
+    font-size: 23px;
+    font-weight: 300;
+    color: $eerie-black;
+    margin: 0;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.textWrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.text {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: $outer-space;
+  margin: 0;
+  font-weight: 400;
+}
+
+.noDescription {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  color: $slate-gray;
+  font-style: italic;
+  text-align: center;
+  padding: 20px;
+  background: rgba($antiflash-white, 0.5);
+  border-radius: 16px;
+  border: 1px dashed rgba($french-gray, 0.6);
+}
+
+.textGradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3em;
+  background: linear-gradient(transparent, rgba($seasalt, 0.9) 90%);
+  pointer-events: none;
+}
+
+.moreButton,
+.scheduleToggle {
+  padding: 16px;
+  background: rgba($seasalt, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba($platinum, 0.6);
+  border-radius: 24px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: $outer-space;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  transition: all 0.3s ease;
+  width: 100%;
+
+  &:active {
+    background: rgba($antiflash-white, 0.8);
+    transform: translateY(0);
+  }
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: $slate-gray;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0;
+}
+
+.detailItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px;
+  background: rgba($seasalt, 0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  border: 1px solid rgba($platinum, 0.4);
+  transition: all 0.3s ease;
+}
+
+.detailContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.detailLabel {
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: $onyx;
+  text-transform: uppercase;
+}
+
+.detailValue {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  color: $eerie-black;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.scheduleSection {
+  background: rgba($seasalt, 0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.scheduleHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 8px;
+  background: transparent;
+  gap: 8px;
+}
+
+// Новый стиль для статуса
+.statusBadge {
+  display: flex;
+  align-items: center;
+}
+
+.statusPill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px;
+  background: rgba($seasalt, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba($platinum, 0.6);
+  border-radius: 24px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  transition: all 0.3s ease;
+
+  &.open {
+    color: #059669;
+    border-color: rgba(5, 150, 105, 0.2);
+    background: rgba(5, 150, 105, 0.05);
+
+    .statusDot {
+      background: #059669;
+      box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.15);
+    }
+  }
+
+  &.closed {
+    color: #dc2626;
+    border-color: rgba(220, 38, 38, 0.2);
+    background: rgba(220, 38, 38, 0.05);
+
+    .statusDot {
+      background: #dc2626;
+      box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
+    }
+  }
+}
+
+.statusDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.statusLabel {
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.scheduleDropdown {
+  overflow: hidden;
+  background: rgba($antiflash-white, 0.3);
+  border-radius: 24px;
+}
+
+// ФИКС: Выравнивание графика работы
+.scheduleItem {
+  display: grid;
+  grid-template-columns: 32px 1fr auto; // День | Текст | Время
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: $outer-space;
+  background: transparent;
+  border-bottom: 1px solid rgba($platinum, 0.3);
+  position: relative;
+  width: 100%;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.scheduleItem.currentDay {
+  background: rgba($slate-gray, 0.05);
+  color: $eerie-black;
+  font-weight: 600;
+}
+
+.day {
+  font-weight: 500;
+  font-size: 14px;
+  color: $eerie-black;
+  text-align: left;
+}
+
+.hours {
+  font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace; // Моноширинный шрифт для цифр
+  font-size: 14px;
+  color: $slate-gray;
+  text-align: right;
+  font-variant-numeric: tabular-nums; // Выравнивание цифр по ширине
+  letter-spacing: -0.01em;
+}
+
+.currentIndicator {
+  font-family: "Montserrat", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: $slate-gray;
+  background: rgba($french-gray, 0.2);
+  padding: 4px 8px;
+  border-radius: 8px;
+  letter-spacing: 0.05em;
+  justify-self: start; // Выравнивание метки "Сегодня" по левому краю
+}

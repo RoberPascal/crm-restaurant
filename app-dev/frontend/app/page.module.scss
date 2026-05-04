@@ -1,0 +1,174 @@
+// ============================================
+// ОСНОВНЫЕ СТИЛИ
+// ============================================
+// Fallback для vars (если globals.css не загружен)
+$seasalt: #f8f9faff;
+$antiflash-white: #e9ecefff;
+$platinum: #dee2e6ff;
+$french-gray: #ced4daff;
+$french-gray-2: #adb5bdff;
+$slate-gray: #6c757dff;
+$outer-space: #495057ff;
+$onyx: #343a40ff;
+$eerie-black: #212529ff;
+
+.mainContainer {
+  // Контейнер страницы: мобильный-first (max-width 430px)
+  max-width: 430px;
+  margin: 0 auto;
+  padding-top: 82px;
+  padding-bottom: 72px;
+  background-color: var(--seasalt, $seasalt);
+  color: var(--eerie-black, $eerie-black);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+}
+
+// ============================================
+// ОШИБКИ
+// ============================================
+.errorBanner {
+  // Full-screen ошибка
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  box-sizing: border-box;
+  background-color: var(--seasalt, $seasalt);
+  text-align: center;
+}
+
+.errorContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  text-align: center;
+}
+
+.errorText {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #dc3545; // System red
+  text-align: center;
+  padding: 16px;
+  background-color: var(--seasalt, $seasalt);
+  border-radius: 12px;
+  margin: 16px;
+  box-shadow: 0 2px 8px rgba(220, 53, 69, 0.1);
+  border-left: 4px solid #dc3545;
+}
+
+.retryButton {
+  // Кнопка повторной попытки
+  padding: 12px 24px;
+  border: 2px solid #dc3545; // System red
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #dc3545; // System red
+  background-color: transparent;
+  transition: all 0.2s ease;
+
+  &:active {
+    background-color: #c82333; // Darker red on tap
+    transform: translateY(1px);
+  }
+}
+
+// ============================================
+// EMPTY STATE
+// ============================================
+.emptyState {
+  // Full-screen пустое состояние
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  box-sizing: border-box;
+  text-align: center;
+  gap: 12px;
+  background-color: var(--seasalt, $seasalt);
+
+  h3 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--slate-gray, $slate-gray);
+  }
+
+  p {
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    color: var(--slate-gray, $slate-gray);
+    margin: 0;
+    line-height: 1.5;
+  }
+}
+
+// ============================================
+// LOADING STATES
+// ============================================
+.loading {
+  // Centered loading
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  color: var(--outer-space, $outer-space);
+}
+
+.spinner {
+  // Анимация спиннера
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--french-gray, $french-gray);
+  border-top: 3px solid #28a745; // System green
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+// ============================================
+// СПИСОК КАРТОЧЕК
+// ============================================
+.restaurantsList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0 16px;
+}
+
+.pageWrapper {
+  position: relative;
+}
+
+.contentWrapper {
+  transition: filter 0.3s ease;
+}

@@ -1,0 +1,193 @@
+// app/profile/page.module.scss
+$seasalt: #f8f9faff;
+$antiflash-white: #e9ecefff;
+$platinum: #dee2e6ff;
+$french-gray: #ced4daff;
+$french-gray-2: #adb5bdff;
+$slate-gray: #6c757dff;
+$outer-space: #495057ff;
+$onyx: #343a40ff;
+$eerie-black: #212529ff;
+
+.container {
+  max-width: 430px;
+  margin: 0 auto;
+  padding-top: 82px;
+  padding-bottom: 72px;
+  background-color: var(--seasalt, $seasalt);
+  color: var(--eerie-black, $eerie-black);
+  min-height: 100vh;
+  position: relative;
+}
+
+.main {
+  padding: 0 16px;
+
+  h1 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0 0 32px 0;
+    color: var(--onyx, $onyx);
+    text-align: center;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  label {
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--outer-space, $outer-space);
+    margin-bottom: 4px;
+  }
+
+  input,
+  textarea {
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px;
+    padding: 14px 16px;
+    border: 2px solid var(--platinum, $platinum);
+    border-radius: 12px;
+    background: white;
+    transition: all 0.2s ease;
+
+    &:focus {
+      outline: none;
+      border-color: var(--slate-gray, $slate-gray);
+      box-shadow: 0 0 0 3px rgba(108, 117, 125, 0.1);
+    }
+
+    &.readonly {
+      background-color: var(--antiflash-white, $antiflash-white);
+      color: var(--slate-gray, $slate-gray);
+      cursor: not-allowed;
+      border-color: var(--french-gray, $french-gray);
+    }
+
+    &::placeholder {
+      color: var(--french-gray-2, $french-gray-2);
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 80px;
+    font-family: "Montserrat", sans-serif;
+    line-height: 1.4;
+  }
+}
+
+.saveButton {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 16px 24px;
+  background-color: var(--onyx, $onyx);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 8px;
+
+  &:hover:not(:disabled) {
+    background-color: var(--eerie-black, $eerie-black);
+    transform: translateY(-1px);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    background-color: var(--french-gray-2, $french-gray-2);
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+// Стили состояний (аналогично главной странице)
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  color: var(--outer-space, $outer-space);
+  min-height: 50vh;
+}
+
+.error {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #dc3545;
+  text-align: center;
+  padding: 12px 16px;
+  background-color: #fff5f5;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(220, 53, 69, 0.1);
+  border-left: 4px solid #dc3545;
+}
+
+.success {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #28a745;
+  text-align: center;
+  padding: 12px 16px;
+  background-color: #f0fdf4;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(40, 167, 69, 0.1);
+  border-left: 4px solid #28a745;
+  animation: slideInDown 0.3s ease;
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Анимация спиннера
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--french-gray, $french-gray);
+  border-top: 3px solid #28a745;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

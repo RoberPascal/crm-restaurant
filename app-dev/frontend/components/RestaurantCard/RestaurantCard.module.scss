@@ -1,0 +1,234 @@
+// components/RestaurantCard/RestaurantCard.module.scss
+
+// Цветовая палитра (идентичная HeroSection)
+$seasalt: #f8f9faff;
+$antiflash-white: #e9ecefff;
+$platinum: #dee2e6ff;
+$french-gray: #ced4daff;
+$french-gray-2: #adb5bdff;
+$slate-gray: #6c757dff;
+$outer-space: #495057ff;
+$onyx: #343a40ff;
+$eerie-black: #212529ff;
+
+.card {
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+  background: #000;
+  border-radius: 24px;
+  display: block;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.image {
+  object-fit: cover;
+  object-position: center;
+  filter: grayscale(50%) brightness(1);
+  border-radius: 24px;
+}
+
+.imageOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.7) 0%,
+    transparent 50%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  z-index: 1;
+  border-radius: 24px;
+}
+
+.content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 16px;
+  color: #f8f9fa;
+}
+
+.mainInfo {
+  margin-top: auto;
+}
+
+.name {
+  font-family: "Oswald", sans-serif;
+  font-size: 33px;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  margin: 0 0 8px 0;
+  line-height: 1.1;
+  text-transform: uppercase;
+
+  &::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 1px;
+    background: #f8f9fa;
+    margin: 12px 0 0 0;
+    opacity: 0.5;
+  }
+}
+
+.address {
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin: 0;
+}
+
+.description {
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  margin: 8px 0 0 0;
+  opacity: 0.8;
+  overflow: hidden;
+}
+
+.metaInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  width: 100%;
+  background: rgba(248, 249, 250, 0.05);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(248, 249, 250, 0.1);
+  border-radius: 24px;
+  padding: 16px 20px;
+  margin-top: 20px;
+  gap: 8px;
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.metaIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  color: #f8f9fa;
+  flex-shrink: 0;
+}
+
+.metaText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.metaLabel {
+  font-family: "Montserrat", sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #adb5bd;
+  opacity: 0.8;
+}
+
+.metaValue {
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: #f8f9fa;
+
+  &.open {
+    color: #22c55e;
+    font-weight: 600;
+  }
+
+  &.closed {
+    color: #ef4444;
+    font-weight: 600;
+  }
+}
+
+.loading {
+  .imageSkeleton {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.2) 50%,
+      rgba(255, 255, 255, 0.1) 100%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite;
+    border-radius: 24px;
+  }
+
+  .loadingText {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.2) 50%,
+      rgba(255, 255, 255, 0.1) 100%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite;
+    border-radius: 4px;
+    height: 16px;
+    margin: 8px 0;
+  }
+
+  .name {
+    width: 60%;
+  }
+
+  .address {
+    width: 80%;
+  }
+
+  .metaLabel {
+    width: 50px;
+    height: 10px;
+  }
+
+  .metaValue {
+    width: 70px;
+    height: 12px;
+  }
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

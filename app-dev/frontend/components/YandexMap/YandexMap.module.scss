@@ -1,0 +1,204 @@
+// ============================================
+// components/YandexMap/YandexMap.module.scss
+// ============================================
+
+$seasalt: #f8f9faff;
+$antiflash-white: #e9ecefff;
+$platinum: #dee2e6ff;
+$french-gray: #ced4daff;
+$french-gray-2: #adb5bdff;
+$slate-gray: #6c757dff;
+$outer-space: #495057ff;
+$onyx: #343a40ff;
+$eerie-black: #212529ff;
+
+.section {
+  background: rgba($seasalt, 0.8);
+  padding: 16px;
+  width: 100%;
+  max-width: 430px;
+  box-sizing: border-box;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border: 1px solid rgba($platinum, 0.6);
+  box-shadow: 0 8px 32px rgba($eerie-black, 0.08),
+    0 2px 8px rgba($eerie-black, 0.04), inset 0 1px 0 rgba($seasalt, 0.9);
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba($platinum, 0.5);
+
+    .title {
+      font-family: "Oswald", sans-serif;
+      font-size: 23px;
+      font-weight: 300;
+      color: $eerie-black;
+      margin: 0;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+    }
+  }
+}
+
+.mapWrapper {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.mapContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 24px;
+  overflow: hidden;
+  height: 350px; // Увеличили высоту для карточки
+
+  .map {
+    width: 100%;
+    height: 100%;
+    animation: fadeIn 0.5s ease-out;
+  }
+}
+
+// Карточка адреса внутри карты
+.addressCard {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  background: rgba($seasalt, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 16px;
+  padding: 16px;
+  border: 1px solid rgba($platinum, 0.6);
+  box-shadow: 0 8px 32px rgba($eerie-black, 0.15),
+    0 2px 8px rgba($eerie-black, 0.1);
+}
+
+.addressContent {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.addressRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.iconWrapper {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $slate-gray;
+  margin-top: 2px;
+}
+
+.addressInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.addressLabel {
+  font-family: "Montserrat", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: $slate-gray;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.addressText {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: $eerie-black;
+  line-height: 1.4;
+}
+
+/* Состояния загрузки и ошибки */
+.loader {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: $outer-space;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 12px;
+  background: linear-gradient(135deg, $antiflash-white 0%, $platinum 100%);
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid $french-gray;
+  border-top: 2px solid #28a745;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.error {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #dc3545;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 12px;
+  background: linear-gradient(135deg, $antiflash-white 0%, $platinum 100%);
+  box-shadow: 0 2px 8px rgba(220, 53, 69, 0.1);
+  border-left: 4px solid #dc3545;
+}
+
+.errorIcon {
+  color: #dc3545;
+  font-size: 20px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+// Адаптивность
+@media (max-width: 480px) {
+  .addressCard {
+    bottom: 8px;
+    left: 8px;
+    right: 8px;
+    padding: 12px;
+  }
+
+  .addressText {
+    font-size: 13px;
+  }
+}

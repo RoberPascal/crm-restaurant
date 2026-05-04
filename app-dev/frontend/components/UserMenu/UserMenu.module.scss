@@ -1,0 +1,310 @@
+// components/Header/Header.module.scss (только UserMenu стили)
+.userMenu {
+  position: fixed;
+  top: 84px;
+  right: 20px;
+  left: 20px;
+  max-width: 400px;
+  margin: 0 auto;
+
+  // Современный стеклянный эффект
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(40px) saturate(1.8);
+  -webkit-backdrop-filter: blur(40px) saturate(1.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  z-index: 1002;
+  overflow: hidden;
+
+  // Более мягкая тень
+  box-shadow: 0 32px 64px rgba(0, 0, 0, 0.16), 0 16px 32px rgba(0, 0, 0, 0.12),
+    0 8px 16px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+
+  transform: translateZ(0);
+}
+
+.menuHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 24px 24px 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(20px);
+}
+
+.userInfo {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  flex: 1;
+}
+
+.userAvatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.userText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.menuTitle {
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a1a;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.userStatus {
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #6c757d;
+  letter-spacing: 0.02em;
+}
+
+.closeButton {
+  background: rgba(0, 0, 0, 0.06);
+  backdrop-filter: blur(10px);
+  border: none;
+  border-radius: 12px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #6c757d;
+  flex-shrink: 0;
+  margin-top: -4px;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.1);
+    color: #1a1a1a;
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.menuContent {
+  padding: 8px 0;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.userMenuLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  border: none;
+  background: none;
+  width: 100%;
+  position: relative;
+  gap: 12px;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.03);
+
+    .linkText {
+      color: #000;
+    }
+
+    .linkIcon {
+      color: #667eea;
+      transform: scale(1.1);
+    }
+
+    .chevron {
+      transform: translateX(2px);
+    }
+  }
+
+  &:active {
+    background: rgba(0, 0, 0, 0.05);
+    transform: scale(0.995);
+  }
+
+  // Градиентный акцент при ховере
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 0 2px 2px 0;
+    transition: height 0.3s ease;
+  }
+
+  &:hover::before {
+    height: 60%;
+  }
+}
+
+.linkContent {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 1;
+}
+
+.linkIcon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6c757d;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.linkText {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #495057;
+  transition: all 0.3s ease;
+  letter-spacing: -0.01em;
+}
+
+.chevron {
+  color: #ced4da;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.menuFooter {
+  padding: 16px 24px 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.04);
+  background: rgba(248, 249, 250, 0.6);
+  backdrop-filter: blur(10px);
+}
+
+.footerText {
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #adb5bd;
+  text-align: center;
+  display: block;
+  letter-spacing: 0.02em;
+}
+
+// Темная тема для UserMenu
+@media (prefers-color-scheme: dark) {
+  .userMenu {
+    background: rgba(33, 37, 41, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    .menuTitle {
+      color: #ffffff;
+    }
+
+    .userStatus {
+      color: #adb5bd;
+    }
+
+    .userMenuLink {
+      &:hover {
+        background: rgba(255, 255, 255, 0.08);
+
+        .linkText {
+          color: #ffffff;
+        }
+
+        .linkIcon {
+          color: #8b9dc3;
+        }
+      }
+    }
+
+    .linkText {
+      color: #e9ecef;
+    }
+
+    .chevron {
+      color: #6c757d;
+    }
+
+    .menuFooter {
+      background: rgba(52, 58, 64, 0.6);
+    }
+
+    .footerText {
+      color: #6c757d;
+    }
+  }
+}
+
+// Адаптивность для UserMenu
+@media (max-width: 430px) {
+  .userMenu {
+    right: 16px;
+    left: 16px;
+    top: 80px;
+    border-radius: 20px;
+  }
+
+  .menuHeader {
+    padding: 20px 20px 16px;
+  }
+
+  .userMenuLink {
+    padding: 14px 20px;
+  }
+
+  .menuFooter {
+    padding: 14px 20px 18px;
+  }
+}
+
+@media (max-width: 375px) {
+  .userMenu {
+    top: 76px;
+  }
+
+  .userAvatar {
+    width: 40px;
+    height: 40px;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .linkText {
+    font-size: 15px;
+  }
+}

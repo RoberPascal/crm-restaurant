@@ -1,0 +1,151 @@
+// ============================================
+// components/StaticMap/StaticMap.module.scss
+// ============================================
+
+$seasalt: #f8f9faff;
+$antiflash-white: #e9ecefff;
+$platinum: #dee2e6ff;
+$french-gray: #ced4daff;
+$french-gray-2: #adb5bdff;
+$slate-gray: #6c757dff;
+$outer-space: #495057ff;
+$onyx: #343a40ff;
+$eerie-black: #212529ff;
+
+.section {
+  background: rgba($seasalt, 0.8);
+  padding: 16px;
+  width: 100%;
+  max-width: 430px;
+  box-sizing: border-box;
+}
+
+.header {
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.mapWrapper {
+  width: 100%;
+}
+
+.mapContainer {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  background: $antiflash-white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.staticMap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+
+  &:hover .mapOverlay {
+    opacity: 1;
+  }
+}
+
+.mapOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.tapHint {
+  color: white;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+.addressCard {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  background: white;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.addressContent {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.addressRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.iconWrapper {
+  color: $slate-gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.addressInfo {
+  flex: 1;
+}
+
+.addressLabel {
+  font-size: 12px;
+  color: $slate-gray;
+  margin-bottom: 4px;
+}
+
+.addressText {
+  font-size: 14px;
+  color: $eerie-black;
+  line-height: 1.4;
+}
+
+// Анимации
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}

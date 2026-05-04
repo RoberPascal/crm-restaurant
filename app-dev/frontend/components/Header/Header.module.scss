@@ -1,0 +1,482 @@
+// ============================================
+// components/Header/Header.module.scss
+// ============================================
+
+// Цветовая палитра
+$seasalt: #f8f9faff;
+$antiflash-white: #e9ecefff;
+$platinum: #dee2e6ff;
+$french-gray: #ced4daff;
+$french-gray-2: #adb5bdff;
+$slate-gray: #6c757dff;
+$outer-space: #495057ff;
+$onyx: #343a40ff;
+$eerie-black: #212529ff;
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  max-width: 430px;
+  margin: 0 auto;
+  height: 72px;
+  z-index: 1000;
+  background: transparent;
+  transform: translateZ(0);
+}
+
+.headerContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  background: transparent;
+  padding: 16px;
+}
+
+.leftSection,
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 8px; // Добавляем отступ между кнопками
+}
+
+// Кнопки с полупрозрачным фоном и тенью для читаемости
+%glassButton {
+  background: rgba($seasalt, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba($seasalt, 0.8);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  // Тень для выделения на любом фоне
+  box-shadow: 0 2px 12px rgba($eerie-black, 0.15),
+    0 4px 24px rgba($eerie-black, 0.1), 0 0 0 1px rgba($seasalt, 0.2) inset;
+
+  svg {
+    width: 22px;
+    height: 22px;
+    color: $outer-space;
+    transition: all 0.3s ease;
+  }
+
+  &:hover {
+    background: rgba($seasalt, 1);
+    box-shadow: 0 3px 16px rgba($eerie-black, 0.18),
+      0 6px 32px rgba($eerie-black, 0.12), 0 0 0 1px rgba($seasalt, 0.3) inset;
+  }
+
+  &:active {
+    background: rgba($antiflash-white, 1);
+    transform: translateY(1px);
+    box-shadow: 0 1px 6px rgba($eerie-black, 0.12),
+      0 2px 12px rgba($eerie-black, 0.08), 0 0 0 1px rgba($seasalt, 0.2) inset;
+  }
+}
+
+.backButton {
+  @extend %glassButton;
+  text-decoration: none;
+}
+
+.menuButton {
+  @extend %glassButton;
+}
+
+.shareButton {
+  @extend %glassButton;
+}
+
+// Модалка шеринга
+.shareModal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(100% - 32px);
+  max-width: 380px;
+
+  // Улучшенный стеклянный эффект
+  background: rgba($seasalt, 0.95);
+  backdrop-filter: blur(50px) saturate(2);
+  -webkit-backdrop-filter: blur(50px) saturate(2);
+  border: 1px solid rgba($platinum, 0.7);
+  border-radius: 24px;
+  z-index: 1002;
+  overflow: hidden;
+
+  // Более мягкая тень
+  box-shadow: 0 25px 60px rgba($eerie-black, 0.15),
+    0 8px 20px rgba($eerie-black, 0.08), 0 2px 6px rgba($eerie-black, 0.04),
+    inset 0 1px 0 rgba($seasalt, 0.9);
+
+  transform: translateZ(0);
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid rgba($platinum, 0.5);
+  background: rgba($seasalt, 0.5);
+  backdrop-filter: blur(20px);
+}
+
+.modalTitle {
+  font-family: "Oswald", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: $eerie-black;
+  margin: 0;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+.shareContent {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.shareOptions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.shareOption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 8px;
+  border-radius: 16px;
+  background: rgba($antiflash-white, 0.6);
+  border: 1px solid rgba($platinum, 0.4);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    background: rgba($antiflash-white, 0.8);
+    transform: translateY(-2px);
+    border-color: var(--accent-color);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.shareIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--accent-color);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.shareName {
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: $outer-space;
+}
+
+.copySection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.urlDisplay {
+  background: rgba($antiflash-white, 0.6);
+  border: 1px solid rgba($platinum, 0.4);
+  border-radius: 12px;
+  padding: 12px 16px;
+  overflow: hidden;
+}
+
+.urlText {
+  font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
+  font-size: 13px;
+  color: $slate-gray;
+  word-break: break-all;
+}
+
+.copyButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px;
+  background: rgba($onyx, 0.9);
+  border: 1px solid rgba($onyx, 0.8);
+  border-radius: 16px;
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba($eerie-black, 0.9);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &.copied {
+    background: #059669;
+    border-color: #059669;
+  }
+}
+
+// Остальные стили остаются без изменений...
+// (contentBlurOverlay, menuOverlay, userMenu, menuHeader, userInfo, userAvatar, menuTitle, userStatus, closeButton, menuContent, userMenuLink, linkContent, linkIcon, linkText, chevron)
+
+// Оверлей для всей страницы с position absolute
+.contentBlurOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100vh;
+  backdrop-filter: blur(4px) brightness(0.98);
+  -webkit-backdrop-filter: blur(12px) brightness(0.98);
+  background: linear-gradient(
+    135deg,
+    rgba($eerie-black, 0.1) 0%,
+    rgba($outer-space, 0.05) 100%
+  );
+  z-index: 998;
+  pointer-events: none;
+}
+
+.menuOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: transparent;
+  z-index: 1001;
+  cursor: pointer;
+}
+
+.userMenu {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  left: 16px;
+  max-width: 430px;
+  margin: 0 auto;
+
+  // Улучшенный стеклянный эффект
+  background: rgba($seasalt, 0.88);
+  backdrop-filter: blur(50px) saturate(2);
+  -webkit-backdrop-filter: blur(50px) saturate(2);
+  border: 1px solid rgba($platinum, 0.7);
+  border-radius: 24px;
+  z-index: 1002;
+  overflow: hidden;
+
+  // Более мягкая тень
+  box-shadow: 0 25px 60px rgba($eerie-black, 0.1),
+    0 8px 20px rgba($eerie-black, 0.06), 0 2px 6px rgba($eerie-black, 0.03),
+    inset 0 1px 0 rgba($seasalt, 0.9);
+
+  transform: translateZ(0);
+}
+
+.menuHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid rgba($platinum, 0.5);
+  background: rgba($seasalt, 0.5);
+  backdrop-filter: blur(20px);
+  position: relative;
+
+  // Акцентная линия сверху
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 68px;
+    right: 68px;
+    height: 2px;
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
+    background: linear-gradient(
+      90deg,
+      rgba($slate-gray, 0.4) 0%,
+      rgba($outer-space, 0.6) 50%,
+      rgba($slate-gray, 0.4) 100%
+    );
+  }
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+}
+
+.userAvatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    rgba($slate-gray, 0.9) 0%,
+    rgba($outer-space, 0.9) 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $seasalt;
+  flex-shrink: 0;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba($seasalt, 0.2);
+
+  svg {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+.menuTitle {
+  font-family: "Oswald", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: $eerie-black;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.userStatus {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: $slate-gray;
+  letter-spacing: 0.01em;
+}
+
+.closeButton {
+  background: rgba($french-gray, 0.3);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba($platinum, 0.4);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: $outer-space;
+  flex-shrink: 0;
+
+  &:active {
+    transform: rotate(90deg) scale(0.95);
+  }
+}
+
+.menuContent {
+  background: rgba($seasalt, 0.3);
+}
+
+.userMenuLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  background: none;
+  width: 100%;
+  position: relative;
+  gap: 12px;
+  border-bottom: 1px solid #ced4daff;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+
+  // Индикатор наведения
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%) scaleX(0);
+    width: 3px;
+    height: 32px;
+    background: linear-gradient(135deg, $slate-gray 0%, $outer-space 100%);
+    border-radius: 0 2px 2px 0;
+    transition: transform 0.3s ease;
+  }
+}
+
+.linkContent {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+}
+
+.linkIcon {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $slate-gray;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.linkText {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: $outer-space;
+  transition: all 0.3s ease;
+  letter-spacing: -0.01em;
+}
+
+.chevron {
+  color: $outer-space;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}

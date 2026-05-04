@@ -1,0 +1,336 @@
+// ============================================
+// components/Events/Events.module.scss
+// ============================================
+// Events: Mobile-swipe cards с icons, gradient bg. Монохром vars, system green/red.
+// Визуал: Staggered cards, overlay badges, subtle shadows. Tap/focus only.
+
+$seasalt: #f8f9faff;
+$antiflash-white: #e9ecefff;
+$platinum: #dee2e6ff;
+$french-gray: #ced4daff;
+$french-gray-2: #adb5bdff;
+$slate-gray: #6c757dff;
+$outer-space: #495057ff;
+$onyx: #343a40ff;
+$eerie-black: #212529ff;
+
+.section {
+  background: linear-gradient(
+    135deg,
+    var(--seasalt, $seasalt) 0%,
+    var(--antiflash-white, $antiflash-white) 100%
+  );
+  padding: 16px;
+  width: 100%;
+  max-width: 430px;
+  box-sizing: border-box;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--french-gray, $french-gray);
+    padding-bottom: 8px;
+  }
+
+  .title {
+    font-family: "Oswald", "Montserrat", sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--eerie-black, $eerie-black);
+    text-transform: uppercase;
+    margin: 0;
+    letter-spacing: -0.5px;
+  }
+
+  .controls {
+    display: flex;
+    gap: 8px;
+  }
+
+  .arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--french-gray, $french-gray);
+    background: var(--antiflash-white, $antiflash-white);
+    color: var(--outer-space, $outer-space);
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &.disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    &:active:not(.disabled) {
+      background: var(--platinum, $platinum);
+      transform: scale(0.95);
+    }
+
+    &:focus {
+      outline: 2px solid #28a745; // System green
+      outline-offset: 2px;
+    }
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  .carouselContainer {
+    width: 100%;
+    overflow: hidden;
+    cursor: grab;
+    position: relative;
+
+    &:active {
+      cursor: grabbing;
+    }
+  }
+
+  .carousel {
+    display: flex;
+    transition: transform 0.3s ease;
+    will-change: transform;
+    gap: 16px; // Gap between cards
+  }
+
+  .card {
+    flex: 0 0 auto;
+    border-radius: 24px;
+    overflow: hidden;
+    background: linear-gradient(
+      135deg,
+      var(--antiflash-white, $antiflash-white) 0%,
+      var(--platinum, $platinum) 100%
+    );
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+    .imageWrapper {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+
+      .image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+
+      .overlay {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        display: flex;
+        gap: 6px;
+        z-index: 2;
+
+        .type,
+        .age {
+          background: rgba(248, 249, 250, 0.95); // Seasalt overlay
+          color: var(--eerie-black, $eerie-black);
+          font-size: 11px;
+          font-weight: 600;
+          padding: 4px 8px;
+          border-radius: 6px;
+          backdrop-filter: blur(4px);
+          border: 1px solid var(--french-gray, $french-gray);
+        }
+      }
+
+      .placeholder {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          var(--french-gray, $french-gray) 0%,
+          var(--french-gray-2, $french-gray-2) 100%
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Montserrat", sans-serif;
+        font-size: 14px;
+        color: var(--seasalt, $seasalt);
+        text-align: center;
+        padding: 20px;
+      }
+    }
+
+    .details {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      flex-grow: 1;
+
+      .eventHeader {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 12px;
+
+        .name {
+          font-family: "Oswald", "Montserrat", sans-serif;
+          font-size: 20px;
+          font-weight: 400;
+          color: var(--eerie-black, $eerie-black);
+          text-transform: uppercase;
+          margin: 0;
+          letter-spacing: -0.5px;
+          flex: 1;
+        }
+
+        .cost {
+          font-family: "Oswald", "Montserrat", sans-serif;
+          font-size: 20px;
+          font-weight: 400;
+          color: var(--eerie-black, $eerie-black);
+          text-transform: uppercase;
+          margin: 0;
+          letter-spacing: -0.5px;
+          white-space: nowrap;
+        }
+      }
+
+      .dateTime {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: "Montserrat", sans-serif;
+        font-size: 14px;
+        color: var(--outer-space, $outer-space);
+        padding: 8px 0;
+        border-top: 1px solid var(--french-gray, $french-gray);
+        border-bottom: 1px solid var(--french-gray, $french-gray);
+
+        .icon {
+          flex-shrink: 0;
+          color: var(--french-gray-2, $french-gray-2);
+        }
+
+        .date {
+          font-weight: 500;
+          margin-right: auto;
+        }
+
+        .time {
+          color: var(--slate-gray, $slate-gray);
+          font-weight: 400;
+        }
+      }
+
+      .location {
+        display: flex;
+        align-items: center;
+        font-family: "Montserrat", sans-serif;
+        font-size: 14px;
+        color: var(--outer-space, $outer-space);
+        gap: 10px;
+
+        .icon {
+          flex-shrink: 0;
+          color: var(--french-gray-2, $french-gray-2);
+        }
+      }
+
+      .description {
+        font-family: "Montserrat", sans-serif;
+        font-size: 14px;
+        color: var(--outer-space, $outer-space);
+        line-height: 1.5;
+        margin: 0;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+    }
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  .paginationDot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    background: var(--french-gray, $french-gray);
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &.active {
+      background: #28a745; // System green
+      transform: scale(1.3);
+    }
+
+    &:active {
+      transform: scale(0.9);
+    }
+
+    &:focus {
+      outline: 2px solid #28a745;
+      outline-offset: 2px;
+    }
+  }
+
+  // ============================================
+  // MOBILE-ONLY RESPONSIVE
+  // ============================================
+  @media (max-width: 430px) {
+    padding: 12px;
+    gap: 12px;
+
+    .carousel {
+      gap: 12px;
+    }
+
+    .card {
+      .imageWrapper {
+        height: 180px;
+      }
+
+      .details {
+        padding: 16px;
+        gap: 12px;
+      }
+
+      .name,
+      .cost {
+        font-size: 18px;
+      }
+    }
+
+    .title {
+      font-size: 20px;
+    }
+
+    .controls {
+      gap: 4px;
+    }
+
+    .arrow {
+      width: 32px;
+      height: 32px;
+    }
+  }
+}

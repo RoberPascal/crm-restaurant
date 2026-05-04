@@ -1,0 +1,414 @@
+// MenuModal.module.scss
+// Цветовая палитра
+$seasalt: #f8f9faff;
+$antiflash-white: #e9ecefff;
+$platinum: #dee2e6ff;
+$french-gray: #ced4daff;
+$french-gray-2: #adb5bdff;
+$slate-gray: #6c757dff;
+$outer-space: #495057ff;
+$onyx: #343a40ff;
+$eerie-black: #212529ff;
+
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(248, 249, 250, 0.05);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  //padding: 20px; // Добавлено: отступы для мобильных
+  overflow: hidden; // Добавлено: предотвращаем скролл body
+}
+
+.modalContent {
+  background: rgba($seasalt, 0.95);
+  backdrop-filter: blur(80px) saturate(3);
+  -webkit-backdrop-filter: blur(80px) saturate(3);
+  border: 1px solid rgba($platinum, 0.8);
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  width: 100%;
+  max-width: 430px;
+  height: 100vh; // Изменено: вместо фиксированной высоты
+  //height: auto; // Добавлено: автоматическая высота
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  align-self: flex-end;
+  box-shadow: 0 32px 80px rgba($eerie-black, 0.25),
+    0 12px 32px rgba($eerie-black, 0.15), 0 4px 12px rgba($eerie-black, 0.1),
+    inset 0 1px 0 rgba($seasalt, 0.95), inset 0 -1px 0 rgba($eerie-black, 0.05);
+}
+
+// Header
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid rgba($platinum, 0.5);
+  background: rgba($seasalt, 0.5);
+  backdrop-filter: blur(20px);
+  position: relative;
+  flex-shrink: 0; // Добавлено: предотвращаем сжатие хедера
+
+  // Акцентная линия сверху
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 68px;
+    right: 68px;
+    height: 2px;
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
+    background: linear-gradient(
+      90deg,
+      rgba($slate-gray, 0.4) 0%,
+      rgba($outer-space, 0.6) 50%,
+      rgba($slate-gray, 0.4) 100%
+    );
+  }
+}
+
+.modalTitle {
+  font-family: "Oswald", sans-serif;
+  font-size: 23px;
+  font-weight: 300;
+  color: $eerie-black;
+  margin: 0;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+%glassButton {
+  background: rgba($seasalt, 0.85);
+  backdrop-filter: blur(24px) saturate(2);
+  -webkit-backdrop-filter: blur(24px) saturate(2);
+  border: 1px solid rgba($platinum, 0.6);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  // Минималистичная тень
+  box-shadow: 0 4px 20px rgba($eerie-black, 0.08),
+    0 1px 3px rgba($eerie-black, 0.04), inset 0 1px 0 rgba($seasalt, 0.9);
+
+  svg {
+    width: 22px;
+    height: 22px;
+    color: $outer-space;
+    transition: all 0.3s ease;
+  }
+
+  &:active {
+    background: rgba($antiflash-white, 0.9);
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba($eerie-black, 0.06),
+      inset 0 1px 0 rgba($seasalt, 0.8);
+  }
+}
+
+.closeButton {
+  background: rgba($french-gray, 0.3);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba($platinum, 0.4);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: $outer-space;
+  flex-shrink: 0;
+
+  &:active {
+    transform: rotate(90deg) scale(0.95);
+  }
+}
+
+// Main Content
+.mainContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background: rgba($seasalt, 0.5);
+  backdrop-filter: blur(20px);
+  min-height: 0; // Добавлено: для правильной работы flex
+  overflow: hidden; // Добавлено: предотвращаем переполнение
+}
+
+// Main Swiper
+.mainSwiperContainer {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  backdrop-filter: blur(20px);
+  min-height: 0; // Добавлено: для правильной работы flex
+}
+
+.mainSwiper {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+}
+
+.mainSlide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  -webkit-tap-highlight-color: transparent;
+  height: 100%; // Добавлено: гарантируем высоту
+}
+
+.zoomContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-in;
+  min-height: 300px; // Добавлено: минимальная высота для контента
+  max-height: 60vh; // Добавлено: ограничение максимальной высоты
+}
+
+.mainImage {
+  object-fit: contain;
+  object-position: center;
+}
+
+// Navigation
+.navPrev,
+.navNext {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  @extend %glassButton;
+  z-index: 100;
+  opacity: 0.9;
+
+  &:active {
+    transform: translateY(-50%) scale(0.92);
+  }
+}
+
+.navPrev {
+  left: 16px;
+}
+
+.navNext {
+  right: 16px;
+}
+
+// Pagination - ФИКСИРУЕМ!
+.paginationContainer {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+  width: auto;
+}
+
+.pagination {
+  background: $french-gray;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba($platinum, 0.4);
+  border-radius: 24px;
+  color: $eerie-black;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 8px 24px rgba($eerie-black, 0.3),
+    inset 0 1px 0 rgba($seasalt, 0.1);
+  width: 100%;
+}
+
+// Thumbnails
+.thumbnailsContainer {
+  border-top: 1px solid rgba($platinum, 0.5);
+  background: rgba($seasalt, 0.5);
+  backdrop-filter: blur(20px);
+  flex-shrink: 0;
+  padding: 16px;
+}
+
+.thumbnailsSwiper {
+  width: 100%;
+  height: 77px;
+  border-radius: 24px;
+
+  // Кастомные стили для миниатюр
+  :global {
+    .swiper-slide {
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+  }
+}
+
+.thumbnailSlide {
+  width: 77px !important;
+  height: 77px;
+  opacity: 0.5;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  border-radius: 24px;
+}
+
+.thumbnailWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 24px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background: $seasalt;
+  box-shadow: 0 4px 16px rgba($eerie-black, 0.08),
+    inset 0 1px 0 rgba($seasalt, 0.9);
+}
+
+.thumbnailSlideActive {
+  opacity: 1;
+  border-radius: 24px;
+}
+
+.thumbnailImage {
+  object-fit: cover;
+  border-radius: 24px;
+}
+
+.thumbnailOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba($eerie-black, 0.1);
+  transition: background 0.3s ease;
+}
+
+.thumbnailSlideActive .thumbnailOverlay {
+  background: transparent;
+}
+
+// Mobile Instructions
+.mobileInstructions {
+  display: none;
+  padding: 14px 20px;
+  background: rgba($platinum, 0.4);
+  text-align: center;
+  border-top: 1px solid rgba($platinum, 0.5);
+  backdrop-filter: blur(20px);
+  flex-shrink: 0; // Добавлено: предотвращаем сжатие
+
+  @media (max-width: 768px) {
+    display: block;
+  }
+
+  p {
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px;
+    color: $slate-gray;
+    margin: 0;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+  }
+}
+
+// Анимации
+@keyframes modalAppear {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes modalDisappear {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8) translateY(30px);
+  }
+}
+
+.modalContent {
+  animation: modalAppear 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  &.closing {
+    animation: modalDisappear 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+}
+
+// Load states
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  flex-direction: column;
+  gap: 16px;
+  color: $slate-gray;
+  min-height: 200px; // Добавлено: минимальная высота для загрузки
+
+  p {
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0;
+  }
+}
+
+// Empty state
+.emptyState {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  flex-direction: column;
+  gap: 16px;
+  padding: 40px;
+  text-align: center;
+  min-height: 200px; // Добавлено: минимальная высота для пустого состояния
+
+  p {
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px;
+    color: $slate-gray;
+    margin: 0;
+    font-weight: 500;
+  }
+}

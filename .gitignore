@@ -58,7 +58,6 @@ credentials.txt
 txt.txt
 
 # app-dev/frontend and strapi-dev are excluded from this repository
-app-dev/
 strapi-dev/
 
 # Credentials
